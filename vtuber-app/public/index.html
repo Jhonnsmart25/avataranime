@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nova</title>
+  <meta name="theme-color" content="#1b1033">
+  <meta name="description" content="Tu asistente virtual: platica, escucha y da consejos.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1 id="name">Nova</h1>
+      <button id="install" class="install" hidden>Instalar app</button>
+    </header>
+
+    <section class="stage" aria-label="Asistente">
+      <!-- Avatar provisional ORIGINAL. Se reemplaza después por tu diseño (Live2D). -->
+      <svg id="avatar" class="avatar idle" viewBox="0 0 200 240" role="img" aria-label="Avatar de la asistente">
+        <defs>
+          <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#3b2a9e"/>
+          </linearGradient>
+          <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#19c6b7"/><stop offset="1" stop-color="#0c7f88"/>
+          </linearGradient>
+        </defs>
+        <g class="bob">
+          <path d="M60 110 Q20 150 36 220 Q52 170 70 150Z" fill="url(#hair)"/>
+          <path d="M140 110 Q180 150 164 220 Q148 170 130 150Z" fill="url(#hair)"/>
+          <path d="M55 215 Q100 190 145 215 L150 240 L50 240Z" fill="url(#suit)"/>
+          <rect x="88" y="168" width="24" height="26" rx="10" fill="#ffd9c4"/>
+          <ellipse cx="100" cy="110" rx="52" ry="58" fill="#ffe3d3"/>
+          <path d="M44 108 Q44 40 100 40 Q156 40 156 108 Q140 76 100 74 Q60 76 44 108Z" fill="url(#hair)"/>
+          <path d="M100 40 L100 22" stroke="#7c5cff" stroke-width="4" stroke-linecap="round"/>
+          <path d="M100 8 l4 8 9 1 -7 6 2 9 -8 -5 -8 5 2 -9 -7 -6 9 -1z" fill="#ffd166"/>
+          <g class="eyes">
+            <ellipse class="eye" cx="78" cy="112" rx="8" ry="11" fill="#2a1a5e"/>
+            <ellipse class="eye" cx="122" cy="112" rx="8" ry="11" fill="#2a1a5e"/>
+            <circle cx="81" cy="108" r="3" fill="#fff"/><circle cx="125" cy="108" r="3" fill="#fff"/>
+          </g>
+          <ellipse cx="66" cy="132" rx="9" ry="5" fill="#ff9aa8" opacity=".5"/>
+          <ellipse cx="134" cy="132" rx="9" ry="5" fill="#ff9aa8" opacity=".5"/>
+          <ellipse id="mouth" cx="100" cy="143" rx="9" ry="3" fill="#c2415a"/>
+        </g>
+      </svg>
+      <p id="status" class="status" aria-live="polite">Lista para platicar</p>
+    </section>
+
+    <section id="log" class="log" aria-live="polite"></section>
+
+    <form id="form" class="composer" autocomplete="off">
+      <button type="button" id="mic" class="mic" aria-label="Hablar" title="Mantén o toca para hablar">🎤</button>
+      <input id="text" type="text" placeholder="Escribe o toca el micrófono…" enterkeyhint="send">
+      <button type="submit" class="send" aria-label="Enviar">➤</button>
+    </form>
+    <label class="voice-toggle"><input type="checkbox" id="voiceOn" checked> Respuesta en voz</label>
+  </main>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
