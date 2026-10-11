@@ -73,7 +73,11 @@ async function chat(req, res) {
       body: JSON.stringify({ model: MODEL, max_tokens: 400, system: SYSTEM_PROMPT, messages }),
     });
     const data = await r.json();
-    if (!r.ok) { console.error("Error de la API:", r.status, data); return send(res, 502, { error: "No pude pensar en este momento, intenta de nuevo." }); }
+    if (!r.ok) {
+      console.error("Error de la API:", r.status, JSON.stringify(data));
+      const detail = `${r.status} ${data?.error?.type || ""}: ${data?.error?.message || "sin detalle"}`.slice(0, 200);
+      return send(res, 502, { error: "No pude pensar en este momento, intenta de nuevo.", detail });
+    }
     const reply = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("").trim();
     send(res, 200, { reply });
   } catch (e) {
